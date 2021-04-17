@@ -14,7 +14,7 @@
 
 //Code adapted from https://raw.githubusercontent.com/googleapis/nodejs-speech/master/samples/infiniteStreaming.js
 
-'use strict';
+
 
 
 
@@ -204,7 +204,7 @@ function main(
       threshold: 0, // Silence threshold
       silence: 1000,
       keepSilence: true,
-      recordProgram: 'rec', // Try also "arecord" or "sox"
+      recordProgram: 'arecord', // Try also "arecord" or "sox"
     })
     .stream()
     .on('error', err => {
