@@ -6,6 +6,8 @@ import DiffRender from './Algorithm/DiffRender.jsx'
 
 import Header from './components/Header';
 import Landing from './components/Landing/Landing';
+import About from './components/About/About';
+import Leaderboard from './components/Leaderboard/Leaderboard';
 import Rap from './components/Rap/Rap';
 
 class App extends Component {
@@ -38,7 +40,9 @@ class App extends Component {
         {/* <p>{this.state.apiResponse}</p> */}
         <Switch>
           <Route path='/' exact component={Landing} />
+          <Route path='/about' exact component={About} />
           <Route path='/rap' exact component={Rap} />
+          <Route path='/leaderboard' exact component={Leaderboard} />
         </Switch>
       </Router>
     </header>
