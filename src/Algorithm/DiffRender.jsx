@@ -1,30 +1,16 @@
 import React from 'react';
 import { getFeedback, getScore } from './textDiff.js'
-
+import parse from 'html-react-parser';
 
 class DiffRender extends React.Component{
 
     render(){
 
-        var content = "<div>" + getFeedback(this.props.recorded, this.props.user) + "</div>";
+        var content = getFeedback(this.props.recorded, this.props.user)
 
-        return(<div> {getFeedback(this.props.recorded, this.props.user)} </div>);
+        return(<div>{parse(content)}</div>);
     }
 
-}
-
-class del extends React.Component{
-
-    render(){
-        return (<h1>boop</h1>)
-    }
-}
-
-class ins extends React.Component{
-
-    render(){
-        return (<h1>beep</h1>)
-    }
 }
 
 export default DiffRender;
