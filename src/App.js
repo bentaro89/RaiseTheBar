@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import * as db from './dataStorage/datastore';
-import logo from './logo.svg';
 import './App.css';
 import DiffRender from './Algorithm/DiffRender.jsx'
+
+import Header from './components/Header';
+import Landing from './components/Landing/Landing';
+import About from './components/About/About';
+import Leaderboard from './components/Leaderboard/Leaderboard';
+import Rap from './components/Rap/Rap';
 
 class App extends Component {
   constructor(props) {
@@ -26,25 +32,19 @@ class App extends Component {
     }
 }
   render (){
-    db.addDog(this.state.test1); // Test for database!
-
     return(
     <div className="App">
     <header className="App-header">
-      <p>{this.state.apiResponse}</p>
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>
-        Edit <code>src/App.js</code> and save to reload.
-      </p>
-      <a
-        className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Learn React
-      </a>
-      <DiffRender user = "the quick brown fox" recorded = "the lazy dog"></DiffRender>
+      <Router>
+        <Header/>
+        {/* <p>{this.state.apiResponse}</p> */}
+        <Switch>
+          <Route path='/' exact component={Landing} />
+          <Route path='/about' exact component={About} />
+          <Route path='/rap' exact component={Rap} />
+          <Route path='/leaderboard' exact component={Leaderboard} />
+        </Switch>
+      </Router>
     </header>
   </div>
     );
