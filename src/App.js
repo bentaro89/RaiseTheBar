@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import DiffRender from './Algorithm/DiffRender.jsx'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         >
           Learn React
         </a>
+        <DiffRender user="The little brown fox jumped over the lazy dog" recorded="The quick brown fox jumped over the lazy dog"></DiffRender>
       </header>
     </div>
   );
