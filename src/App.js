@@ -17,7 +17,7 @@ class App extends Component {
       test1: "test it!",
       apiResponse: "",
     }
-    console.log(lyrics.one); // Get the verse verse of lyrics
+    console.log(lyrics.one); // Get the first verse of lyrics
   }
   //Repeatedly call API to obtain most recent microphone input 
   async componentDidMount() {
