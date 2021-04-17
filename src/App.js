@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import * as db from './dataStorage/datastore';
-import logo from './logo.svg';
 import './App.css';
+
+import Header from './components/Header';
+import Landing from './components/Landing/Landing';
+import Rap from './components/Rap/Rap';
 
 class App extends Component {
   constructor(props) {
@@ -30,19 +34,14 @@ class App extends Component {
     return(
     <div className="App">
     <header className="App-header">
-      <p>{this.state.apiResponse}</p>
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>
-        Edit <code>src/App.js</code> and save to reload.
-      </p>
-      <a
-        className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Learn React
-      </a>
+      <Router>
+        <Header/>
+        {/* <p>{this.state.apiResponse}</p> */}
+        <Switch>
+          <Route path='/' exact component={Landing} />
+          <Route path='/rap' exact component={Rap} />
+        </Switch>
+      </Router>
     </header>
   </div>
     );
