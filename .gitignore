@@ -3,6 +3,7 @@ node_modules
 scripts/flow/*/.flowconfig
 .flowconfig
 ./dataStorage/key.js
+./api/key.js
 *~
 *.pyc
 .grunt
