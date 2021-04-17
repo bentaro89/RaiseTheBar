@@ -9,6 +9,7 @@ import Landing from './components/Landing/Landing';
 import About from './components/About/About';
 import Leaderboard from './components/Leaderboard/Leaderboard';
 import Rap from './components/Rap/Rap';
+import AudioPlayer from './components/Audio/AudioPlayer'
 
 class App extends Component {
   constructor(props) {
@@ -30,13 +31,15 @@ class App extends Component {
     } catch(e) {
       console.log(e);
     }
-}
+  }
+
   render (){
     return(
     <div className="App">
     <header className="App-header">
       <Router>
         <Header/>
+        <AudioPlayer />
         {/* <p>{this.state.apiResponse}</p> */}
         <Switch>
           <Route path='/' exact component={Landing} />
