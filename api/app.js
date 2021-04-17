@@ -7,7 +7,7 @@ var cors = require("cors");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-testAPIRouter = require('./routes/STTApi');
+var testAPIRouter = require('./routes/STTApi');
 var app = express();
 
 // view engine setup
