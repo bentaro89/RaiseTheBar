@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as db from './dataStorage/datastore';
 import logo from './logo.svg';
 import './App.css';
+import DiffRender from './Algorithm/DiffRender.jsx'
 
 class App extends Component {
   constructor(props) {
