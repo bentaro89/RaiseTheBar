@@ -30,8 +30,6 @@ class App extends Component {
     }
 }
   render (){
-    db.addDog(this.state.test1); // Test for database!
-
     return(
     <div className="App">
     <header className="App-header">
