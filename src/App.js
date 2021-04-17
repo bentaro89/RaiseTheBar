@@ -45,6 +45,7 @@ class App extends Component {
           <Route path='/leaderboard' exact component={Leaderboard} />
         </Switch>
       </Router>
+      <DiffRender user = {this.state.apiResponse} recorded = "testing testing testing I am andy"/>
     </header>
   </div>
     );
