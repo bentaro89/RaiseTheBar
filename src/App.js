@@ -44,6 +44,7 @@ class App extends Component {
       >
         Learn React
       </a>
+      <DiffRender user = "the quick brown fox" recorded = "the lazy dog"></DiffRender>
     </header>
   </div>
     );

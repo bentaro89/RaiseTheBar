@@ -8,7 +8,7 @@ class DiffRender extends React.Component{
 
         var content = "<div>" + getFeedback(this.props.recorded, this.props.user) + "</div>";
 
-        return(content);
+        return(<div> {getFeedback(this.props.recorded, this.props.user)} </div>);
     }
 
 }
