@@ -119,7 +119,11 @@
             var pre = "";
     
             for (n = out.n[i].row + 1; n < out.o.length && out.o[n].text == null; n++ ) {
-              pre += '<del style=\"color:red;\">' + escape(out.o[n]) + oSpace[n] + "</del>";
+              if(n<i){
+                pre += '<del style=\"color:red;\">' + escape(out.o[n]) + oSpace[n] + "</del>";
+              }else{
+                pre += escape(out.o[n]) + oSpace[n];
+              }
             }
             str += "<span style=\"color:green;\" > " + out.n[i].text + "</span>" + nSpace[i] + pre;
           }
