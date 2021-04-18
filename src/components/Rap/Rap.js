@@ -48,6 +48,8 @@ class Rap extends Component  {
         this.setState({ 
             starting: false, 
             play: false,
+            countdownStart: false,
+            score: 0,
             apiResponse: " ",
             firstTime: true,
             firstInput: " ",
@@ -59,7 +61,12 @@ class Rap extends Component  {
     }
 
     stop = () => {
-        this.setState({startedRecording: false});
+        this.setState({
+            startedRecording: false,
+            starting: false, 
+            play: false,
+            countdownStart: false
+        });
         this.setState({
             score: Math.round(100 * getScore(lyrics.one, this.state.apiResponse))
         });
@@ -149,7 +156,7 @@ class Rap extends Component  {
                     </div>
                     <div className='right-sidebar'>
                         <h2>Progress Bar</h2>
-                        <progress className='progress-bar' max='100' min='0' value='45'/>
+                        <progress className='progress-bar' max='100' min='0' value='5'/>
                     </div>
                 </div>
                 <img src={restart} alt = 'restart' className='restart' onClick={this.handleRestart}/>
