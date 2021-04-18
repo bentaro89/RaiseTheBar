@@ -62,7 +62,9 @@ class Rap extends Component  {
             apiResponse: " ",
             firstTime: true,
             firstInput: " ",
+            timeSinceStart: 0
         })
+        clearInterval(this.interval);
     }
 
     tickTime = () => {
