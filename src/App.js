@@ -5,7 +5,6 @@ import './App.css';
 import Header from './components/Header';
 import Landing from './components/Landing/Landing';
 import About from './components/About/About';
-import Leaderboard from './components/Leaderboard/Leaderboard';
 import Rap from './components/Rap/Rap';
 const lyrics = require('./lyrics.json');
 
@@ -35,7 +34,7 @@ class App extends Component {
           <Route path='/' exact component={Landing} />
           <Route path='/about' exact component={About} />
           <Route path='/rap' exact component={Rap} />
-          <Route path='/leaderboard' exact component={Leaderboard} />
+          {/* <Route path='/leaderboard' exact component={Leaderboard} /> */}
         </Switch>
       </Router>
     </header>
