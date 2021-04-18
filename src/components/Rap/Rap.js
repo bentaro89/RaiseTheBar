@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 import '../Styles/Rap.css';
-import AudioPlayer from './AudioPlayer'
+import * as db from '../../dataStorage/datastore';
+import AudioPlayer from './AudioPlayer';
 import Countdown from "react-countdown";
 import mics from "../../images/mics.png";
 import restart from "../../images/restart.png";
+import Leaderboard from './LeaderBoard';
 const lyrics = require('../../lyrics.json');
 
 class Rap extends Component  {
     state = { clicked: false, 
         starting: false, 
         play: false,
+        name: '',
+        score: 10,
+        completedRap: false,
         startedRecording: false,
         apiResponse: " ",
         firstTime: true,
@@ -63,6 +68,7 @@ class Rap extends Component  {
         if (completed) {
           // Render a complete state
           this.setState({ play: true })
+          db.addScore(this.state.name, this.state.score)
           return null;
         } else {
           // Render a countdown
@@ -80,12 +86,13 @@ class Rap extends Component  {
 
     render() {
         return (
-            <div>
+            <div className='wrapper'>
                 <AudioPlayer visible={this.state.play} start={this.start} stop={this.stop}/>
                 <p>{this.state.apiResponse}</p>
+                <img className='mic'  alt= 'mic' src="/images/mic.png" style={{width: '7rem'}}/>
                 <input
                     type = 'text'
-                    placeholder = 'Enter your name i.e Eminem'
+                    placeholder = 'Enter your name to play...'
                     value = {this.state.name} 
                     onChange = {this.newName}
                 />
@@ -104,6 +111,7 @@ class Rap extends Component  {
                     </div>
                 </div>
                 <img src={restart} className='restart' onClick={this.handleRestart}/>
+                <Leaderboard/>
             </div>
         );
     }

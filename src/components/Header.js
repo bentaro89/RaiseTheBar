@@ -29,11 +29,6 @@ class Header extends Component {
                             Rap
                         </Link>
                     </li>
-                    <li className='nav-item'>
-                        <Link to='/leaderboard' className='nav-links'>
-                            Leaderboard
-                        </Link>
-                    </li>
                 </ul>
             </nav>
         )

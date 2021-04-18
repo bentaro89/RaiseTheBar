@@ -1,9 +1,9 @@
-key.json
+.DS_STORE
 node_modules
 scripts/flow/*/.flowconfig
 .flowconfig
-./dataStorage/key.json
-./api/key.json
+./dataStorage/key.js
+./api/key.js
 *~
 *.pyc
 .grunt
