@@ -70,7 +70,7 @@ class Rap extends Component  {
             firstInput: " ",
             timeSinceStart: 0,
             restarted: true,
-            updatedDBAfter: false
+            updatedDBAfter: true
         })
         clearInterval(this.interval);
     }
@@ -90,17 +90,18 @@ class Rap extends Component  {
         setTimeout(() => {
             this.setState({ startedrecording: false })
         }, 3000);
-        this.setState({ // Return a score as an integer
-            score: Math.round(100 * getScore(lyrics.one, this.state.apiResponse))
-        });
 
         // Record score to database
-        db.addScore(this.state.name, this.state.score);
+        setTimeout(() => { 
+            this.setState({ // Return a score as an integer
+                score: Math.round(100 * getScore(lyrics.one, this.state.apiResponse))
+            });
+            db.addScore(this.state.name, this.state.score); 
+        }, 4000);
 
         clearInterval(this.interval);
         this.setState({
             timeSinceStart: 0,
-            updatedDBAfter: false
         });
     }
 
@@ -114,14 +115,6 @@ class Rap extends Component  {
                         .then(res => this.setState({apiResponse: this.state.apiResponse + res, firstInput: res}));
                     if(this.state.firstTime && this.state.firstInput !== " "){
                         this.setState({apiResponse: " ", firstTime: false});
-                    }
-                    if(!this.state.play && !this.state.updatedDBAfter){
-                        this.setState({ // Return a score as an integer
-                            score: Math.round(100 * getScore(lyrics.one, this.state.apiResponse)),
-                            updatedDBAfter: true
-                        });
-                        // Record score to database
-                        db.addScore(this.state.name, this.state.score);
                     }
                 }
             }, 50);
