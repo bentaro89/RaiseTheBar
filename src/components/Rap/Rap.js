@@ -95,6 +95,7 @@ class Rap extends Component  {
 
         // Record score to database
         db.addScore(this.state.name, this.state.score);
+
         clearInterval(this.interval);
         this.setState({
             timeSinceStart: 0
@@ -111,6 +112,10 @@ class Rap extends Component  {
                         .then(res => this.setState({apiResponse: this.state.apiResponse + res, firstInput: res}));
                     if(this.state.firstTime && this.state.firstInput !== " "){
                         this.setState({apiResponse: " ", firstTime: false});
+                    }
+                    if(!this.state.play){
+                        // Record score to database
+                        db.addScore(this.state.name, 100 * Math.round(getScore(lyrics.one, this.state.apiResponse)));
                     }
                 }
             }, 50);
