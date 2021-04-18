@@ -1,9 +1,9 @@
-key.json
+.DS_STORE
 node_modules
 scripts/flow/*/.flowconfig
 .flowconfig
-./dataStorage/key.json
-./api/key.json
+./dataStorage/key.js
+./api/key.js
 *~
 *.pyc
 .grunt
@@ -26,7 +26,6 @@ chrome-user-data
 .vscode
 *.swp
 *.swo
-key.json
 
 packages/react-devtools-core/dist
 packages/react-devtools-extensions/chrome/build
