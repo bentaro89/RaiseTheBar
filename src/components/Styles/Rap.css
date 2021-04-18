@@ -18,7 +18,6 @@ input {
 }
 
 .scroll {
-    /* margin-inline: 10rem; */
     position: relative;
     box-shadow: 0 0 8px 2px #737485;
     border-radius: 20px;
@@ -96,9 +95,9 @@ input {
 }
 
 .restart {
-    width: 1.5rem;
-    margin: 1rem;
-    margin-bottom: 5rem;
+    width: 2rem;
+    margin-top: -3rem;
+    margin-bottom: 6rem;
 }
 
 .sidebar-container {
@@ -111,6 +110,8 @@ input {
 .left-sidebar, .right-sidebar {
     width: 30%;
     transform: translateY(-30%);
+    font-family: NeonTubes2, serif;
+    font-size: 18px;
 }
 
 .leaderboard {
@@ -120,21 +121,33 @@ input {
 }
 
 .progress-bar {
-    width: 300px;
-    height: 100px;
+    appearance: none;
+    width: 250px;
+    height: 70px;
     transform: rotate(-90deg);
-    margin-top: 10rem;
+    margin-top: 8rem;
+}
+
+@-webkit-keyframes animate-stripes {
+    100% { background-position: -100px 0px; }
+ }
+ 
+ @keyframes animate-stripes {
+    100% { background-position: -100px 0px; }
+ }
+
+progress::-webkit-progress-value {
+    background: rgb(40, 181, 228);
+    -webkit-animation: animate-stripes 5s linear infinite;
+    animation: animate-stripes 5s linear infinite;
 }
 
 .score {
     background-color: rgb(55, 59, 70);
-    max-width: fit-content;
-    padding-top: 4px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 4px;
+    width: 110px;
+    height: 140px;
     border-radius: 20px;
-    position: absolute;
-    bottom: 0px;
-    right: 40%;
+    transform: translate(145%, 85%);
+    padding-top: 4px;
+    border-radius: 20px;
 }

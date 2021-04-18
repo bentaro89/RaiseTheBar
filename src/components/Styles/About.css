@@ -12,53 +12,70 @@
 .intro-text {
     font-size: 20px;
     font-family: 'Montserrat', sans-serif;
-    color: #F2D657;
+    color: white;
 }
 
 .main-text {
     padding-left: 2rem;
-    font-size: 50px;
+    font-size: 40px;
     font-family: NeonTubes2, serif;
-    color: white;
-}
-
-.try {
-    padding-left: 2rem;
-    text-decoration: none;
-    font-size: 25px;
-    font-family: 'Montserrat', sans-serif;
     color: #F2D657;
 }
 
-.mics {
-    max-width: 300px;
-    height: 280px;
-    margin-top: 2rem;
+
+
+.team_container {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    max-width: 1120px;
+    width: 100%;
+    margin: 0 auto;
 }
 
-html, body {
-    height: 100%;
-    margin: 0;
-  }
-  .grid2x2 {
+.team_members {
+    margin: 50px 0;
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-  }
-  .grid2x2 > div {
-    display: flex; 
-    flex-basis: calc(50%);  
-    justify-content: center;
-    flex-direction: column;
-  }
-  .grid2x2 > div > div {
+    flex-flow: column;
+}
+
+.member-intro {
     display: flex;
-    justify-content: center;
     flex-direction: row;
-  }
-  
-  .box { margin: 20px; }
-  .box1 { height: 40px; width: 40px }
-  .box2 { height: 40px; width: 40px }
-  .box3 { height: 1px; width: 1px }
-  .box4 { height: 40px; width: 40px }
+    margin: 50px 0;
+}
+
+.member-intro > p {
+    font-size: 20px;
+    color: #747474;
+    width: 350px;
+    margin: 85px 70px;
+}
+
+.member {
+    display: flex;
+    margin: 50px 80px;
+}
+
+.profile {
+    display: flex;
+    width: 20vw;
+    height: 20vw;
+    box-shadow: 0 6px 20px rgba(153, 137, 108, 0.17);
+    -webkit-filter: drop-shadow(0 6px 20px rgba(153, 137, 108, 0.17));
+    filter: drop-shadow(0 6px 20px rgba(153, 137, 108, 0.17));
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.pic-wrap {
+    position: relative;
+    width: 100%;
+}
+
+.pic {
+    position: absolute;
+    top: 0;
+    width: 180%;
+    transform: translate(-45%, -10%);
+}
