@@ -38,12 +38,16 @@
 
 .lyrics {
     margin-inline: 2rem;
-    line-height: 1.5;
+    line-height: 2;
+    white-space: pre-line;
+    font-size: 25px;
 }
 
 .lyrics-blurred {
     margin-inline: 2rem;
-    line-height: 1.5;
+    line-height: 2;
+    white-space: pre-line;
+    font-size: 25px;
     filter: blur(4px);
 }
 
@@ -63,8 +67,10 @@
     position: absolute;
     top: 40%;
     left: 46%;
-    color: #F2D657;
     font-size: 70px;
+    font-family: NeonTubes2, serif;
+    color: #F2D657;
+    text-shadow: 0px 0px 5px #F2D657;
 }
 
 .no-countdown {
