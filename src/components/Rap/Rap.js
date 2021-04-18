@@ -23,12 +23,12 @@ class Rap extends Component  {
         apiResponse: " ",
         firstTime: true,
         firstInput: " ",
-        invalidName: false
+        invalidName: false,
+        timeSinceStart: 0,
     }
     audio = new Audio("../../audio/test.mp3")
 
     handleStart = () => {
-        console.log(this.state.starting);
         if (!this.state.starting && this.state.name.trim() !== '') {
             this.playTwoBars();
         }
@@ -56,8 +56,16 @@ class Rap extends Component  {
         })
     }
 
+    tickTime = () => {
+        this.setState({
+            timeSinceStart: this.state.timeSinceStart + 0.1
+        });
+    }
+
     start = () => {
         this.setState({startedRecording: true});
+        this.interval = setInterval(() => this.tickTime(), 100);
+        this.setState({timeSinceStart: 0});
     }
 
     stop = () => {
@@ -71,6 +79,10 @@ class Rap extends Component  {
             score: Math.round(100 * getScore(lyrics.one, this.state.apiResponse))
         });
         db.addScore(this.state.name, this.state.score);
+        clearInterval(this.interval);
+        this.setState({
+            timeSinceStart: 0
+        });
     }
 
     async componentDidMount() {
@@ -152,7 +164,7 @@ class Rap extends Component  {
                     </div>
                     <div className='right-sidebar'>
                         <h2>Progress Bar</h2>
-                        <progress className='progress-bar' max='100' min='0' value='5'/>
+                        <progress className='progress-bar' max='100' min='0' value={100*this.state.timeSinceStart/(18*3/4)}/>
                         <div className = "score">
                             <h2>Score:</h2>
                             <h1>{this.state.score}</h1>
