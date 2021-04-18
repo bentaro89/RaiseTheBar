@@ -69,7 +69,8 @@ class Rap extends Component  {
             firstTime: true,
             firstInput: " ",
             timeSinceStart: 0,
-            restarted: true
+            restarted: true,
+            updatedDBAfter: false
         })
         clearInterval(this.interval);
     }
@@ -98,7 +99,8 @@ class Rap extends Component  {
 
         clearInterval(this.interval);
         this.setState({
-            timeSinceStart: 0
+            timeSinceStart: 0,
+            updatedDBAfter: false
         });
     }
 
@@ -113,12 +115,13 @@ class Rap extends Component  {
                     if(this.state.firstTime && this.state.firstInput !== " "){
                         this.setState({apiResponse: " ", firstTime: false});
                     }
-                    if(!this.state.play){
-                        // Record score to database
-                        db.addScore(this.state.name, 100 * Math.round(getScore(lyrics.one, this.state.apiResponse)));
+                    if(!this.state.play && !this.state.updatedDBAfter){
                         this.setState({ // Return a score as an integer
-                            score: Math.round(100 * getScore(lyrics.one, this.state.apiResponse))
+                            score: Math.round(100 * getScore(lyrics.one, this.state.apiResponse)),
+                            updatedDBAfter: true
                         });
+                        // Record score to database
+                        db.addScore(this.state.name, this.state.score);
                     }
                 }
             }, 50);
