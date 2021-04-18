@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import '../Styles/Rap.css';
-import AudioPlayer from './AudioPlayer'
+import * as db from '../../dataStorage/datastore';
+import AudioPlayer from './AudioPlayer';
 import Countdown from "react-countdown";
+import Leaderboard from './LeaderBoard';
 const lyrics = require('../../lyrics.json');
 
 class Rap extends Component  {
     state = { 
         starting: false, 
         play: false,
-        name: ''
+        name: '',
+        score: 10,
+        completedRap: false,
+        
      }
 
     handleStart = () => {
@@ -29,6 +34,7 @@ class Rap extends Component  {
         if (completed) {
           // Render a complete state
           this.setState({ play: true })
+          db.addScore(this.state.name, this.state.score)
           return null;
         } else {
           // Render a countdown
@@ -54,7 +60,7 @@ class Rap extends Component  {
                     value = {this.state.name} 
                     onChange = {this.newName}
                 />
-                <img src="/images/mic.png" style={{width: '7rem'}}/>
+                <img src="/images/mic.png" alt= 'mic' style={{width: '7rem'}}/>
                 <div class="scroll" onClick={this.handleStart}>
                     <div className='lyrics-container'>
                         <p className={this.state.play ? 'lyrics' : 'lyrics-blurred'}>
@@ -68,7 +74,8 @@ class Rap extends Component  {
                         </p>
                     </div>
                 </div>
-                <img src="/images/restart.png" className='restart' onClick={this.handleRestart}/>
+                <img src="/images/restart.png" alt='restart'className='restart' onClick={this.handleRestart}/>
+                <Leaderboard/>
             </div>
         );
     }
