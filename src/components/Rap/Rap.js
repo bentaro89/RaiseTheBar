@@ -116,6 +116,9 @@ class Rap extends Component  {
                     if(!this.state.play){
                         // Record score to database
                         db.addScore(this.state.name, 100 * Math.round(getScore(lyrics.one, this.state.apiResponse)));
+                        this.setState({ // Return a score as an integer
+                            score: Math.round(100 * getScore(lyrics.one, this.state.apiResponse))
+                        });
                     }
                 }
             }, 50);
