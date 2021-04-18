@@ -5,6 +5,7 @@ import AudioPlayer from './AudioPlayer';
 import Countdown from "react-countdown";
 import DiffRender from "../../Algorithm/DiffRender.jsx"
 import mics from "../../images/mics.png";
+import mic from "../../images/mic.png";
 import restart from "../../images/restart.png";
 import Leaderboard from './LeaderBoard';
 const lyrics = require('../../lyrics.json');
@@ -90,7 +91,7 @@ class Rap extends Component  {
             <div className='wrapper'>
                 <AudioPlayer visible={this.state.play} start={this.start} stop={this.stop}/>
                 <p>{this.state.apiResponse}</p>
-                <img className='mic'  alt= 'mic' src="/images/mic.png" style={{width: '7rem'}}/>
+                <img className='mic'  alt= 'mic' src={mic} style={{width: '7rem'}}/>
                 <input
                     type = 'text'
                     placeholder = 'Enter your name to play...'
