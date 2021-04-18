@@ -5,11 +5,15 @@ import Countdown from "react-countdown";
 const lyrics = require('../../lyrics.json');
 
 class Rap extends Component  {
-    state = { 
+    state = { clicked: false, 
         starting: false, 
         play: false,
+        startedRecording: false,
+        apiResponse: " ",
+        firstTime: true,
         name: ''
-     }
+    }
+    audio = new Audio("../../audio/test.mp3")
 
     handleStart = () => {
         console.log(this.state.starting);
@@ -24,6 +28,30 @@ class Rap extends Component  {
             play: false
         })
     }
+
+    start = () => {
+        this.setState({startedRecording: true})
+    }
+
+    stop = () => {
+        this.setState({startedRecording: false})
+    }
+    async componentDidMount() {
+        try {
+            setInterval(async () => {
+              if(this.state.startedRecording){
+                    fetch("http://localhost:9000/STTApi")
+                    .then(res => res.text())
+                        .then(res => this.setState({apiResponse: this.state.apiResponse + res}));
+                    if(this.state.firstTime && this.state.apiResponse != " "){
+                        this.setState({apiResponse: " ", firstTime: false});
+                    }
+                }
+            }, 50);
+        } catch(e) {
+          console.log(e);
+        }
+      }
 
     renderer = ({ seconds, completed }) => {
         if (completed) {
@@ -47,7 +75,8 @@ class Rap extends Component  {
     render() {
         return (
             <div>
-                <AudioPlayer />
+                <AudioPlayer visible={this.state.play} start={this.start} stop={this.stop}/>
+                <p>{this.state.apiResponse}</p>
                 <input
                     type = 'text'
                     placeholder = 'Enter your name i.e Eminem'
