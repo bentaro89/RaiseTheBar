@@ -7,19 +7,22 @@ class Leaderboard extends Component  {
     constructor(props) {
         super(props);
         this.state = {
-            scores: null,
-            sortedScores: {}
+            scores: null, // object from database
+            sortedScores: {} // object used for high score. Formatted as [name, score]
         }
     }
     componentDidMount() {
-        db.fetchScores(this.fetchedScores);
-    }
-    fetchedScores = (user) => {
-        this.setState({scores: user});
-        this.reOrganizeScores();
+        db.fetchScores(this.fetchedScores); // call to database
     }
 
-    reOrganizeScores = () => {
+    // return scores from users
+    fetchedScores = (user) => {
+        this.setState({scores: user});
+        this.reorganizeScores();
+    }
+
+    // Reorganizes scores for sorting
+    reorganizeScores = () => {
         if (this.state.scores !== null){
             for (const [, value] of Object.entries(this.state.scores)){
                 this.setState({ sortedScores: { ...this.state.sortedScores, [value.name] : value.score } })
@@ -29,6 +32,7 @@ class Leaderboard extends Component  {
 
     render() {
         let totalScores = null
+        //Sorts the highscores, displaying score as name: score
         if (this.state.sortedScores !== null){
             totalScores = Object.entries(this.state.sortedScores).sort((a,b) => b[1]-a[1]).map(value => {
                 return(

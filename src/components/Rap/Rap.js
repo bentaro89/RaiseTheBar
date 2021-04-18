@@ -14,6 +14,7 @@ const lyrics = require('../../lyrics.json');
 class Rap extends Component  {
     state = { clicked: false, 
         starting: false, 
+        countdownStart: false,
         play: false,
         name: '',
         score: 0,
@@ -29,17 +30,26 @@ class Rap extends Component  {
     handleStart = () => {
         console.log(this.state.starting);
         if (!this.state.starting && this.state.name.trim() !== '') {
-            this.setState({ starting: true })
+            this.playTwoBars();
         }
         else if (this.state.name.trim() === ''){
             this.setInvalid();
         }
     }
 
+    playTwoBars = () => {
+        this.setState({ starting: true })
+        setTimeout(() => {
+            this.setState({ countdownStart: true })
+        }, 3000);
+    }
+
     handleRestart = () => {
         this.setState({ 
             starting: false, 
             play: false,
+            countdownStart: false,
+            score: 0,
             apiResponse: " ",
             firstTime: true,
             firstInput: " ",
@@ -51,13 +61,16 @@ class Rap extends Component  {
     }
 
     stop = () => {
-        this.setState({startedRecording: false});
-        if (this.state.play === true) {
-            this.setState({
-                score: Math.round(100 * getScore(lyrics.one, this.state.apiResponse))
-            });
-            db.addScore(this.state.name, this.state.score);
-        }
+        this.setState({
+            startedRecording: false,
+            starting: false, 
+            play: false,
+            countdownStart: false
+        });
+        this.setState({
+            score: Math.round(100 * getScore(lyrics.one, this.state.apiResponse))
+        });
+        db.addScore(this.state.name, this.state.score);
     }
 
     async componentDidMount() {
@@ -78,9 +91,11 @@ class Rap extends Component  {
       }
 
     renderer = ({ seconds, completed }) => {
+        console.log(completed);
         if (completed) {
           // Render a complete state
           this.setState({ play: true })
+          console.log('w');
           return null;
         } else {
           // Render a countdown
@@ -131,7 +146,7 @@ class Rap extends Component  {
                             <p className={this.state.starting ? 'lyrics' : 'lyrics-blurred'}>
                                 <DiffRender recorded = {lyrics.one} user = {this.state.apiResponse}/>
                             </p>
-                            {this.state.starting ?
+                            {this.state.countdownStart ?
                                 <Countdown date={Date.now() + 3000} renderer={this.renderer} /> : null
                             }
                             <p className={this.state.starting ? 'started' : 'not-started'}>
@@ -141,7 +156,7 @@ class Rap extends Component  {
                     </div>
                     <div className='right-sidebar'>
                         <h2>Progress Bar</h2>
-                        <progress className='progress-bar' max='100' min='0' value='45'/>
+                        <progress className='progress-bar' max='100' min='0' value='5'/>
                     </div>
                 </div>
                 <img src={restart} alt = 'restart' className='restart' onClick={this.handleRestart}/>
