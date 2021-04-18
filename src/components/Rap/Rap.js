@@ -144,7 +144,7 @@ class Rap extends Component  {
                     <div className="scroll" onClick={this.handleStart}>
                         <div className='lyrics-container'>
                             <div className={this.state.starting ? 'lyrics' : 'lyrics-blurred'}>
-                                <DiffRender user = {lyrics.one} recorded = {this.state.apiResponse}/>
+                                <DiffRender recorded = {lyrics.one} user = {this.state.apiResponse}/>
                             </div>
                             {this.state.countdownStart ?
                                 <Countdown date={Date.now() + 3000} renderer={this.renderer} /> : null

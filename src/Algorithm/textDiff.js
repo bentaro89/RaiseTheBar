@@ -13,7 +13,6 @@
       o = o.replace(/\s+$/, '');
       n = n.replace(/\s+$/, '');
     
-      var str = "";
       const Diff = require('diff');
       n = n.replace(/[\u2018\u2019]/g, "'");
       o = o.replace(/[\u2018\u2019]/g, "'");
@@ -28,8 +27,12 @@
         total++;
       }
 
+      var score = (total-numIncorrect)*3/total*2;
 
-      return ((total-numIncorrect)*3/total*2);
+      score = score < 0 ? score : 0;
+      score = score > 1 ? score : 1;
+
+      return (score);
   }
 
   export function getFeedback( o, n ) {
@@ -50,7 +53,7 @@
         }
       }
 
-      for ( var i = 0; i < changes.length; i++){
+      for ( i = 0; i < changes.length; i++){
         if ( i < finalChange ){
           if (changes[i].added){
             str += '<ins style="color:red;">' + changes[i].value + '</ins>';
