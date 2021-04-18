@@ -27,7 +27,7 @@
         total++;
       }
 
-      var score = (total-numIncorrect)*3/total*2;
+      var score = (total-numIncorrect)/total;
 
       score = score < 0 ? score : 0;
       score = score > 1 ? score : 1;
