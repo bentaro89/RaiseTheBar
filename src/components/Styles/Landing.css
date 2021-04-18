@@ -4,18 +4,18 @@
 }
 
 .text {
-    /* background: blue; */
     width: 100%;
     padding: 3rem;
     text-align: left;
 }
 
 .intro-text {
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
     color: #F2D657;
 }
 
 .main-text {
-    /* width: 100%; */
     padding-left: 2rem;
     font-size: 50px;
     font-family: NeonTubes2, serif;
@@ -25,6 +25,8 @@
 .try {
     padding-left: 2rem;
     text-decoration: none;
+    font-size: 25px;
+    font-family: 'Montserrat', sans-serif;
     color: #F2D657;
 }
 

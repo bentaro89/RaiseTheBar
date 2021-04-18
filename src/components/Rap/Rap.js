@@ -5,17 +5,24 @@ import Countdown from "react-countdown";
 const lyrics = require('../../lyrics.json');
 
 class Rap extends Component  {
-    state = { starting: false, play: false }
+    state = { 
+        starting: false, 
+        play: false,
+        name: ''
+     }
 
     handleStart = () => {
         console.log(this.state.starting);
-        if (!this.state.starting) {
+        if (!this.state.starting && this.state.name.trim() !== '') {
             this.setState({ starting: true })
         }
     }
 
     handleRestart = () => {
-        this.setState({ starting: false, play: false })
+        this.setState({ 
+            starting: false, 
+            play: false
+        })
     }
 
     renderer = ({ seconds, completed }) => {
@@ -31,10 +38,22 @@ class Rap extends Component  {
         }
     };
 
+    newName = (event) => {
+        if (!this.state.starting){
+            this.setState({ name: event.target.value })
+        }
+    }
+
     render() {
         return (
             <div>
                 <AudioPlayer />
+                <input
+                    type = 'text'
+                    placeholder = 'Enter your name i.e Eminem'
+                    value = {this.state.name} 
+                    onChange = {this.newName}
+                />
                 <img src="/images/mic.png" style={{width: '7rem'}}/>
                 <div class="scroll" onClick={this.handleStart}>
                     <div className='lyrics-container'>
