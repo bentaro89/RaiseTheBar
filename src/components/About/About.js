@@ -11,7 +11,7 @@ class About extends Component  {
     render() {
         return (
             <div className='about'>
-                <p className="intro-text">
+                <p className="about-intro">
                     Welcome to our website!<br/>
                     We are a group of students at Dartmouth College.
                 </p>
