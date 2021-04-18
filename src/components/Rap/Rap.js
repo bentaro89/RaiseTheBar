@@ -25,7 +25,9 @@ class Rap extends Component  {
     handleRestart = () => {
         this.setState({ 
             starting: false, 
-            play: false
+            play: false,
+            apiResponse: " ",
+            firstTime: true
         })
     }
 
