@@ -16,21 +16,31 @@ class App extends Component {
     super(props);
     this.state = {
       test1: "test it!",
-      apiResponse: "",
+      apiResponse: "initial",
+      startedRecording: false,
     }
     console.log(lyrics.one); // Get the first verse of lyrics
   }
   //Repeatedly call API to obtain most recent microphone input 
   async componentDidMount() {
     try {
-      setInterval(async () => {
-        fetch("http://localhost:9000/STTApi")
-          .then(res => res.text())
-            .then(res => this.setState({apiResponse: res}));
-      }, 50);
+      while(this.state.startedRecording){
+        setInterval(async () => {
+          fetch("http://localhost:9000/STTApi")
+            .then(res => res.text())
+              .then(res => this.setState({apiResponse: res}));
+        }, 50);
+      }
     } catch(e) {
       console.log(e);
     }
+  }
+  start = () => {
+    this.setState({startedRecording: !this.state.startedRecording})
+  }
+
+  end = () => {
+    this.setState({startedRecording: "false"})
   }
 
   render (){
@@ -39,8 +49,9 @@ class App extends Component {
     <header className="App-header">
       <Router>
         <Header/>
-        <AudioPlayer />
-        {/* <p>{this.state.apiResponse}</p> */}
+        <AudioPlayer start={this.start} end={this.end}/>
+        <p>{this.state.startedRecording.toString()}</p>
+        <p>{this.state.apiResponse}</p>
         <Switch>
           <Route path='/' exact component={Landing} />
           <Route path='/about' exact component={About} />
