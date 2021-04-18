@@ -10,13 +10,3 @@
   align-items: center;
   color: white;
 }
-
-del{
-  color: red;
-  text-decoration: line-through;
-}
-
-ins{
-  color: red;
-  text-decoration: underline;
-}

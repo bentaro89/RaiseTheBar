@@ -15,21 +15,14 @@ class App extends Component {
     super(props);
     this.state = {
       test1: "test it!",
-      apiResponse: "",
+      apiResponse: "initial",
+      startedRecording: false,
     }
     console.log(lyrics.one); // Get the first verse of lyrics
   }
   //Repeatedly call API to obtain most recent microphone input 
-  async componentDidMount() {
-    try {
-      setInterval(async () => {
-        fetch("http://localhost:9000/STTApi")
-          .then(res => res.text())
-            .then(res => this.setState({apiResponse: res}));
-      }, 50);
-    } catch(e) {
-      console.log(e);
-    }
+  start = () => {
+    this.setState({startedRecording: !this.state.startedRecording})
   }
 
   render (){
