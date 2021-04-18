@@ -20,6 +20,7 @@
 
 
 
+const { resolveNaptr } = require('dns');
 var express = require('express'); 
 var router = express.Router(); 
 
@@ -34,7 +35,7 @@ function main(
   const encoding = 'LINEAR16';
   const sampleRateHertz = 16000;
   const languageCode = 'en-US';
-  const streamingLimit = 10000; // ms - set to low number for demo purposes
+  const streamingLimit = 20000; // ms - set to low number for demo purposes
 
   const chalk = require('chalk');
   const {Writable} = require('stream');
@@ -47,9 +48,11 @@ function main(
   const keyFilename = './key.json';
   const client = new speech.SpeechClient({projectId, keyFilename});
 
-  var string = ''
+  let lastTranscriptWasFinal = false;
+  var string = '';
   router.get("/", function(req,res,next){
     res.send(string.toLowerCase());
+    string = '';
   })
   const config = {
     encoding: encoding,
@@ -59,7 +62,7 @@ function main(
 
   const request = {
     config,
-    interimResults: true,
+    interimResults: true
   };
 
   let recognizeStream = null;
@@ -71,7 +74,8 @@ function main(
   let finalRequestEndTime = 0;
   let newStream = true;
   let bridgingOffset = 0;
-  let lastTranscriptWasFinal = false;
+
+  var loopCounter = 0;
 
   function startStream() {
     // Clear current audioInput
@@ -82,6 +86,7 @@ function main(
       .on('error', err => {
         if (err.code === 11) {
           restartStream();
+          loopCounter++;
         } else {
           console.error('API request error ' + err);
         }
@@ -89,7 +94,7 @@ function main(
       .on('data', speechCallback);
 
     // Restart stream when streamingLimit expires
-    setTimeout(restartStream, streamingLimit);
+    //setTimeout(restartStream, streamingLimit);
   }
 
   const speechCallback = stream => {
@@ -106,14 +111,13 @@ function main(
     process.stdout.cursorTo(0);
     let stdoutText = '';
     if (stream.results[0] && stream.results[0].alternatives[0]) {
-      string = stream.results[0].alternatives[0].transcript;
       stdoutText =
         correctedTime + ': ' + stream.results[0].alternatives[0].transcript;
     }
 
     if (stream.results[0].isFinal) {
       process.stdout.write(chalk.green(`${stdoutText}\n`));
-
+      string = stream.results[0].alternatives[0].transcript;
       isFinalEndTime = resultEndTime;
       lastTranscriptWasFinal = true;
     } else {
