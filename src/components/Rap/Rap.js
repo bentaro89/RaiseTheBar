@@ -151,7 +151,6 @@ class Rap extends Component  {
         return (
             <div className='wrapper'>
                 <AudioPlayer visible={this.state.starting} stop={this.stop}/>
-                <p>{this.state.apiResponse}</p>
                 <img className='mic'  alt= 'mic' src={mic} style={{width: '7rem'}}/>
                 <input
                     type = 'text'
