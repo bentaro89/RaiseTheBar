@@ -6,15 +6,15 @@ class DiffRender extends React.Component{
 
     constructor(props){
         super()
-        this.state = {
+        /*this.state = {
             recorded: this.props.recorded,
             user: this.props.user
-        }
+        }*/
     }
 
     updateText(addition){
         this.setState({
-            user: this.state.user + addition
+            //user: this.state.user + addition
         });
     }
 
