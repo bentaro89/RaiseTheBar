@@ -8,7 +8,7 @@ class AudioPlayer extends Component  {
         if(this.props.visible){
             return (
                 <div className = 'audio'>
-                <ReactAudioPlayer src={mp3_file} autoPlay onPlay={this.props.start} onEnded={this.props.stop}/>
+                <ReactAudioPlayer src={mp3_file} autoPlay onEnded={this.props.stop}/>
                 </div>
             );
         }

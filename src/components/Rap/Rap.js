@@ -44,6 +44,9 @@ class Rap extends Component  {
         setTimeout(() => {
             this.setState({ countdownStart: true })
         }, 3000);
+        setTimeout(() => {
+            this.setState({ startedRecording: true, countdownStart: false })
+        }, 6000);
     }
 
     // if user clicks restart
@@ -60,7 +63,7 @@ class Rap extends Component  {
     }
 
     start = () => { // begins rapping
-        this.setState({startedRecording: true});
+        this.setState({});
     }
 
     stop = () => { // ends rapping
