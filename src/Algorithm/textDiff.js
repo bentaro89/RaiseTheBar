@@ -29,7 +29,7 @@
       }
 
 
-      return ((total-numIncorrect)/total);
+      return ((total-numIncorrect)*3/total*2);
   }
 
   export function getFeedback( o, n ) {
