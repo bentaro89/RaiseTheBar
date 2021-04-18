@@ -25,6 +25,7 @@ class Rap extends Component  {
         firstInput: " ",
         invalidName: false,
         timeSinceStart: 0,
+        restarted: false
     }
     audio = new Audio("../../audio/test.mp3")
 
@@ -41,7 +42,10 @@ class Rap extends Component  {
 
     // Let the two Bars begin, waiting for countdown to start
     playTwoBars = () => {
-        this.setState({ starting: true })
+        this.setState({ 
+            starting: true,
+            restarted: false
+        })
         setTimeout(() => {
             this.setState({ countdownStart: true })
         }, 3000);
@@ -62,7 +66,8 @@ class Rap extends Component  {
             apiResponse: " ",
             firstTime: true,
             firstInput: " ",
-            timeSinceStart: 0
+            timeSinceStart: 0,
+            restarted: true
         })
         clearInterval(this.interval);
     }
@@ -100,7 +105,7 @@ class Rap extends Component  {
         try {
             // speech to text api
             setInterval(async () => {
-              if(this.state.startedRecording){
+              if(this.state.startedRecording && !this.state.restarted ){
                     fetch("http://localhost:9000/STTApi")
                     .then(res => res.text())
                         .then(res => this.setState({apiResponse: this.state.apiResponse + res, firstInput: res}));
