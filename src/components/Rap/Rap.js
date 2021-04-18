@@ -20,8 +20,8 @@ class Rap extends Component  {
         startedRecording: false,
         apiResponse: " ",
         firstTime: true,
-        name: '',
-        firstInput: " "
+        firstInput: " ",
+        invalidName: false
     }
     audio = new Audio("../../audio/test.mp3")
 
@@ -29,6 +29,9 @@ class Rap extends Component  {
         console.log(this.state.starting);
         if (!this.state.starting && this.state.name.trim() !== '') {
             this.setState({ starting: true })
+        }
+        else if (this.state.name.trim() === ''){
+            this.setInvalid();
         }
     }
 
@@ -86,6 +89,13 @@ class Rap extends Component  {
         }
     }
 
+    setInvalid() {
+        this.setState({ invalidName: true })
+        setTimeout(() => { // Animation lasts 1.5 secs
+          this.setState({ invalidName: false })
+        }, 3000);
+    }
+
     render() {
         return (
             <div className='wrapper'>
@@ -98,6 +108,8 @@ class Rap extends Component  {
                     value = {this.state.name} 
                     onChange = {this.newName}
                 />
+                {this.state.invalidName ? 'ENTER A NAME' : null}
+
                 <div className='sidebar-container'>
                     <div className='left-sidebar'>
                         <h2>Leaderboard</h2>
@@ -121,7 +133,8 @@ class Rap extends Component  {
                         <progress className='progress-bar' max='100' min='0' value='45'/>
                     </div>
                 </div>
-                <img src={restart} className='restart' onClick={this.handleRestart}/>
+                <img src={restart} alt = 'restart' className='restart' onClick={this.handleRestart}/>
+                <h1><u>High Score</u></h1>
                 <Leaderboard/>
             </div>
         );
