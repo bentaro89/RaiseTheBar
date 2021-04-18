@@ -1,30 +1,36 @@
 import React from 'react';
-import { getFeedback, getScore } from './textDiff.js'
+import { getFeedback } from './textDiff.js'
 import parse from 'html-react-parser';
 
 class DiffRender extends React.Component{
 
     constructor(props){
         super()
-        /*this.state = {
-            recorded: this.props.recorded,
-            user: this.props.user
-        }*/
-    }
-
-    updateText(addition){
-        this.setState({
-            //user: this.state.user + addition
-        });
+        this.state = {
+            currentLine: "",
+            totalText: ""
+        }
     }
 
     render(){
 
-        var content = getFeedback(this.props.recorded, this.props.user)
+        if(this.props.user === this.state.currentLine){
 
-        return(<div>{parse(content)}</div>);
+        }else if(this.props.user === ""){
+            this.setState({
+                totalText: this.state.totalText + this.props.user,
+                currentLine: ""
+            });
+        } else {
+            this.setState({
+                currentLine: this.props.user
+            });
+        }
+
+        var content = getFeedback(this.props.recorded, this.state.currentLine)
+
+        return(<div><div>{parse(getFeedback(this.props.recorded, this.state.totalText))}</div>{parse(content)}</div>);
     }
-
 }
 
 export default DiffRender;
