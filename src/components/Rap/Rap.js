@@ -11,7 +11,8 @@ class Rap extends Component  {
         startedRecording: false,
         apiResponse: " ",
         firstTime: true,
-        name: ''
+        name: '',
+        firstInput: " "
     }
     audio = new Audio("../../audio/test.mp3")
 
@@ -27,7 +28,8 @@ class Rap extends Component  {
             starting: false, 
             play: false,
             apiResponse: " ",
-            firstTime: true
+            firstTime: true,
+            firstInput: " ",
         })
     }
 
@@ -44,8 +46,8 @@ class Rap extends Component  {
               if(this.state.startedRecording){
                     fetch("http://localhost:9000/STTApi")
                     .then(res => res.text())
-                        .then(res => this.setState({apiResponse: this.state.apiResponse + res}));
-                    if(this.state.firstTime && this.state.apiResponse != " "){
+                        .then(res => this.setState({apiResponse: this.state.apiResponse + res, firstInput: res}));
+                    if(this.state.firstTime && this.state.firstInput != " "){
                         this.setState({apiResponse: " ", firstTime: false});
                     }
                 }
