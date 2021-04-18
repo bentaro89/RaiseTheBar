@@ -20,25 +20,20 @@ class Leaderboard extends Component  {
     }
 
     reOrganizeScores = () => {
-        let objectScores = []
-
         if (this.state.scores !== null){
-            for (const [key, value] of Object.entries(this.state.scores)){
-                console.log(value.name);
+            for (const [, value] of Object.entries(this.state.scores)){
                 this.setState({ sortedScores: { ...this.state.sortedScores, [value.name] : value.score } })
             }
         }
-        console.log(this.state.sortedScores);
     }
 
     render() {
         let totalScores = null
-        if (this.state.scores !== null){
-            //console.log(this.state.scores)
+        if (this.state.sortedScores !== null){
             totalScores = Object.entries(this.state.sortedScores).sort((a,b) => b[1]-a[1]).map(value => {
                 return(
                     <div>
-                        <h1>{value[0]} : {value[1]}</h1>
+                        <h2>{value[0]} : {value[1]}</h2>
                     </div>
                 )
                 }
