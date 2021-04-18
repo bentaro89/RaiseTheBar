@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../Styles/Rap.css';
 import AudioPlayer from './AudioPlayer'
 import Countdown from "react-countdown";
+import DiffRender from "../../Algorithm/DiffRender.jsx"
 const lyrics = require('../../lyrics.json');
 
 class Rap extends Component  {
@@ -47,7 +48,7 @@ class Rap extends Component  {
                     fetch("http://localhost:9000/STTApi")
                     .then(res => res.text())
                         .then(res => this.setState({apiResponse: this.state.apiResponse + res, firstInput: res}));
-                    if(this.state.firstTime && this.state.firstInput != " "){
+                    if(this.state.firstTime && this.state.firstInput !== " "){
                         this.setState({apiResponse: " ", firstTime: false});
                     }
                 }
@@ -90,8 +91,8 @@ class Rap extends Component  {
                 <img src="/images/mic.png" style={{width: '7rem'}}/>
                 <div class="scroll" onClick={this.handleStart}>
                     <div className='lyrics-container'>
-                        <p className={this.state.play ? 'lyrics' : 'lyrics-blurred'}>
-                            {lyrics.one}
+                        <p className={this.state.play ? 'lyrics' : 'lyrics-blurred'} >
+                            <DiffRender recorded = {lyrics.one} user = {this.state.apiResponse} />
                         </p>
                         {this.state.starting ?
                             <Countdown date={Date.now() + 3000} renderer={this.renderer} /> : null

@@ -103,28 +103,30 @@
     
       if (out.n.length === 0) {
           for (var i = 0; i < out.o.length; i++) {
-            str += '<del>' + escape(out.o[i]) + oSpace[i] + "</del>";
+            str += escape(out.o[i]) + oSpace[i];
           }
       } else {
         if (out.n[0].text == null) {
           for (n = 0; n < out.o.length && out.o[n].text == null; n++) {
-            str += '<del>' + escape(out.o[n]) + oSpace[n] + "</del>";
+            str += escape(out.o[n]) + oSpace[n];
           }
         }
     
         for ( i = 0; i < out.n.length; i++ ) {
           if (out.n[i].text == null) {
-            str += '<ins>' + escape(out.n[i]) + nSpace[i] + "</ins>";
+            str += '<ins style=\"color:red;\">' + escape(out.n[i]) + nSpace[i] + "</ins>";
           } else {
             var pre = "";
     
             for (n = out.n[i].row + 1; n < out.o.length && out.o[n].text == null; n++ ) {
-              pre += '<del>' + escape(out.o[n]) + oSpace[n] + "</del>";
+              pre += '<del style=\"color:red;\">' + escape(out.o[n]) + oSpace[n] + "</del>";
             }
-            str += " " + out.n[i].text + nSpace[i] + pre;
+            str += "<span style=\"color:green;\" > " + out.n[i].text + "</span>" + nSpace[i] + pre;
           }
         }
       }
       
+      str = str.replaceAll("%u2019","\'");
+      str = str.replaceAll("%27","\'");
       return str;
   }
