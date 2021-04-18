@@ -40,14 +40,16 @@
     margin-inline: 2rem;
     line-height: 2;
     white-space: pre-line;
-    font-size: 25px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
 }
 
 .lyrics-blurred {
     margin-inline: 2rem;
     line-height: 2;
     white-space: pre-line;
-    font-size: 25px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
     filter: blur(4px);
 }
 
