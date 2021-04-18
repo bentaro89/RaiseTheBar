@@ -51,6 +51,11 @@ input {
     margin: 0;
 }
 
+.invalid-name {
+    margin-top: 1em;
+    color: red;
+}
+
 .lyrics {
     margin-inline: 2rem;
     line-height: 2;

@@ -154,8 +154,9 @@ class Rap extends Component  {
                     value = {this.state.name} 
                     onChange = {this.newName}
                 />
-                {this.state.invalidName ? 'PLEASE ENTER NAME' : null}
-
+                <div className='invalid-name'>
+                    {this.state.invalidName ? 'Please enter a name' : ' '}
+                </div>
                 <div className='sidebar-container'>
                     <div className='left-sidebar'>
                         <h2>Leaderboard</h2>
