@@ -44,7 +44,7 @@ class Leaderboard extends Component  {
             )
         }
         return (
-            <div>
+            <div className='scoreboard'>
                 {totalScores}
             </div>
         );
