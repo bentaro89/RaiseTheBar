@@ -3,13 +3,14 @@
     box-shadow: 0 0 8px 2px #737485;
     border-radius: 20px;
     padding-top: 1rem;
-    width: 12rem;
+    width: 15rem;
     height: 25rem;
     overflow: scroll;
     text-align: center;
     pointer-events: all;
 
-    font-size: 15px;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
 
-    transform: translate(62%, 10%);
+    transform: translate(40%, 10%);
 }
