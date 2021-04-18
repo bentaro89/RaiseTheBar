@@ -1,0 +1,64 @@
+.home-content {
+    display: flex;
+    width: 70%;
+}
+
+.text {
+    width: 100%;
+    padding: 3rem;
+    text-align: left;
+}
+
+.intro-text {
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    color: #F2D657;
+}
+
+.main-text {
+    padding-left: 2rem;
+    font-size: 50px;
+    font-family: NeonTubes2, serif;
+    color: white;
+}
+
+.try {
+    padding-left: 2rem;
+    text-decoration: none;
+    font-size: 25px;
+    font-family: 'Montserrat', sans-serif;
+    color: #F2D657;
+}
+
+.mics {
+    max-width: 300px;
+    height: 280px;
+    margin-top: 2rem;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  .grid2x2 {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+  .grid2x2 > div {
+    display: flex; 
+    flex-basis: calc(50%);  
+    justify-content: center;
+    flex-direction: column;
+  }
+  .grid2x2 > div > div {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+  }
+  
+  .box { margin: 20px; }
+  .box1 { height: 40px; width: 40px }
+  .box2 { height: 40px; width: 40px }
+  .box3 { height: 1px; width: 1px }
+  .box4 { height: 40px; width: 40px }

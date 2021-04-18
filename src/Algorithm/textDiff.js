@@ -89,13 +89,13 @@
       var str = "";
     
       var oSpace = o.match(/\s+/g);
-      if (oSpace == null) {
+      if (oSpace === null) {
         oSpace = ["\n"];
       } else {
         oSpace.push("\n");
       }
       var nSpace = n.match(/\s+/g);
-      if (nSpace == null) {
+      if (nSpace === null) {
         nSpace = ["\n"];
       } else {
         nSpace.push("\n");

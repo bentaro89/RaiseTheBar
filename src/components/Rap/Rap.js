@@ -4,6 +4,8 @@ import * as db from '../../dataStorage/datastore';
 import AudioPlayer from './AudioPlayer';
 import Countdown from "react-countdown";
 import DiffRender from "../../Algorithm/DiffRender.jsx"
+import mics from "../../images/mics.png";
+import restart from "../../images/restart.png";
 import Leaderboard from './LeaderBoard';
 const lyrics = require('../../lyrics.json');
 
@@ -95,7 +97,8 @@ class Rap extends Component  {
                     value = {this.state.name} 
                     onChange = {this.newName}
                 />
-                <div className="scroll" onClick={this.handleStart}>
+                <img src={mics} style={{width: '7rem'}}/>
+                <div class="scroll" onClick={this.handleStart}>
                     <div className='lyrics-container'>
                         <p className={this.state.play ? 'lyrics' : 'lyrics-blurred'} >
                             <DiffRender recorded = {lyrics.one} user = {this.state.apiResponse} />
@@ -108,7 +111,7 @@ class Rap extends Component  {
                         </p>
                     </div>
                 </div>
-                <img src="/images/restart.png" alt='restart'className='restart' onClick={this.handleRestart}/>
+                <img src={restart} className='restart' onClick={this.handleRestart}/>
                 <Leaderboard/>
             </div>
         );
