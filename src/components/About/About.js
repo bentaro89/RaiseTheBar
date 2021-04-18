@@ -17,9 +17,7 @@ class About extends Component  {
                     <ul className='team_members'>
                         <div className='member-intro'>
                             <Member src={adrienne}/>
-                            <p>
-                                My name is Adrienne.
-                            </p>
+                            <h2>Adrienne Ko</h2>
                         </div>
                         <div className='member-intro'>
                             <p>
