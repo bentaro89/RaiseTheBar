@@ -98,18 +98,27 @@ class Rap extends Component  {
                     value = {this.state.name} 
                     onChange = {this.newName}
                 />
-                <img src={mics} style={{width: '7rem'}}/>
-                <div class="scroll" onClick={this.handleStart}>
-                    <div className='lyrics-container'>
-                        <p className={this.state.play ? 'lyrics' : 'lyrics-blurred'} >
-                            <DiffRender recorded = {lyrics.one} user = {this.state.apiResponse} />
-                        </p>
-                        {this.state.starting ?
-                            <Countdown date={Date.now() + 3000} renderer={this.renderer} /> : null
-                        }
-                        <p className={this.state.starting ? 'started' : 'not-started'}>
-                            Click to Start
-                        </p>
+                <div className='sidebar-container'>
+                    <div className='left-sidebar'>
+                        <h2>Leaderboard</h2>
+                        <progress className='leaderboard' max='100' min='0' value='45'/>
+                    </div>
+                    <div className="scroll" onClick={this.handleStart}>
+                        <div className='lyrics-container'>
+                            <p className={this.state.play ? 'lyrics' : 'lyrics-blurred'}>
+                                {lyrics.one}
+                            </p>
+                            {this.state.starting ?
+                                <Countdown date={Date.now() + 3000} renderer={this.renderer} /> : null
+                            }
+                            <p className={this.state.starting ? 'started' : 'not-started'}>
+                                Click to Start
+                            </p>
+                        </div>
+                    </div>
+                    <div className='right-sidebar'>
+                        <h2>Progress Bar</h2>
+                        <progress className='progress-bar' max='100' min='0' value='45'/>
                     </div>
                 </div>
                 <img src={restart} className='restart' onClick={this.handleRestart}/>
