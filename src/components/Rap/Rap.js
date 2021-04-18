@@ -5,6 +5,7 @@ import Countdown from "react-countdown";
 
 class Rap extends Component  {
     state = { clicked: false, starting: false, play: false }
+    audio = new Audio("../../audio/test.mp3")
 
     handleStart = () => {
         console.log(this.state.starting);

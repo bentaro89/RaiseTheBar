@@ -1,6 +1,11 @@
 .home-content {
-    /* background: blue; */
+    display: flex;
     width: 70%;
+}
+
+.text {
+    /* background: blue; */
+    width: 100%;
     padding: 3rem;
     text-align: left;
 }
@@ -10,7 +15,7 @@
 }
 
 .main-text {
-    width: 60%;
+    /* width: 100%; */
     padding-left: 2rem;
     font-size: 50px;
     font-family: NeonTubes2, serif;
@@ -21,4 +26,10 @@
     padding-left: 2rem;
     text-decoration: none;
     color: #F2D657;
+}
+
+.mics {
+    max-width: 300px;
+    height: 280px;
+    margin-top: 2rem;
 }
