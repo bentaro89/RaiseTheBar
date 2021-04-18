@@ -24,7 +24,8 @@ class Rap extends Component  {
         apiResponse: " ",
         firstTime: true,
         firstInput: " ",
-        invalidName: false
+        invalidName: false,
+        timeSinceStart: 0,
     }
     audio = new Audio("../../audio/test.mp3")
 
@@ -47,6 +48,8 @@ class Rap extends Component  {
         }, 3000);
         setTimeout(() => {
             this.setState({ startedRecording: true, countdownStart: false })
+            this.interval = setInterval(() => this.tickTime(), 50)
+            this.setState({timeSinceStart: 0})
         }, 6000);
     }
 
@@ -60,7 +63,15 @@ class Rap extends Component  {
             apiResponse: " ",
             firstTime: true,
             firstInput: " ",
+            timeSinceStart: 0
         })
+        clearInterval(this.interval);
+    }
+
+    tickTime = () => {
+        this.setState({
+            timeSinceStart: this.state.timeSinceStart + 0.05
+        });
     }
 
     stop = () => { // ends rapping
@@ -78,6 +89,10 @@ class Rap extends Component  {
 
         // Record score to database
         db.addScore(this.state.name, this.state.score);
+        clearInterval(this.interval);
+        this.setState({
+            timeSinceStart: 0
+        });
     }
 
     async componentDidMount() {
@@ -138,8 +153,9 @@ class Rap extends Component  {
                     value = {this.state.name} 
                     onChange = {this.newName}
                 />
-                {this.state.invalidName ? 'PLEASE ENTER NAME' : null}
-
+                <div className='invalid-name'>
+                    {this.state.invalidName ? 'Please enter a name' : ' '}
+                </div>
                 <div className='sidebar-container'>
                     <div className='left-sidebar'>
                         <h2>Leaderboard</h2>
@@ -160,7 +176,7 @@ class Rap extends Component  {
                     </div>
                     <div className='right-sidebar'>
                         <h2>Progress Bar</h2>
-                        <progress className='progress-bar' max='100' min='0' value='5'/>
+                        <progress className='progress-bar' max='100' min='0' value={115*this.state.timeSinceStart/(18*3/4)}/>
                         <div className = "score">
                             <h2>Score:</h2>
                             <h1>{this.state.score}</h1>

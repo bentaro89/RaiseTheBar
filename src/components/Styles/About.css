@@ -1,25 +1,21 @@
-.home-content {
-    display: flex;
+.about {
     width: 70%;
 }
 
-.text {
-    width: 100%;
-    padding: 3rem;
-    text-align: left;
-}
-
-.intro-text {
+.about-intro {
     font-size: 20px;
     font-family: 'Montserrat', sans-serif;
     color: white;
+    line-height: 1.5;
+    text-align: center;
+    margin-block: 5rem;
 }
 
-.main-text {
-    padding-left: 2rem;
-    font-size: 40px;
+.main-heading {
+    font-size: 37px;
     font-family: NeonTubes2, serif;
-    color: #F2D657;
+    color: rgb(40, 181, 228);
+    text-align: center;
 }
 
 
@@ -34,6 +30,7 @@
 }
 
 .team_members {
+    transform: translateY(-5%);
     margin: 50px 0;
     display: flex;
     flex-flow: column;
@@ -45,11 +42,24 @@
     margin: 50px 0;
 }
 
-.member-intro > h2 {
+.info {
     font-size: 20px;
-    color: #747474;
     width: 350px;
     margin: 85px 70px;
+    text-align: center;
+}
+
+.info > h2 {
+    font-family: NeonTubes2, serif;
+    font-size: 25px;
+    color: #F2D657;
+}
+
+.info > p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    color: #afb1b6;
+    line-height: 2;
 }
 
 .member {
