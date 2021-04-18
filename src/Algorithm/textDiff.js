@@ -8,7 +8,7 @@
       }
 
       var numIncorrect = 0;
-      var total = 0;
+      var correction = 0;
 
       o = o.replace(/\s+$/, '');
       n = n.replace(/\s+$/, '');
@@ -19,20 +19,14 @@
       var changes = Diff.diffWords(o, n, {ignoreCase: true});
 
       for ( var i = 0; i < changes.length; i++){
-        if (changes[i].added){
+        if (changes[i].added || changes[i].removed){
           numIncorrect++;
-        } else if (changes[i].removed){
-          numIncorrect++;
+        } else {
+          correction++;
         }
-        total++;
       }
 
-      var score = (total-numIncorrect)/total;
-
-      score = score > 0 ? score : 0;
-      score = score < 1 ? score : 1;
-
-      return (score);
+      return (correction/changes.length);
   }
 
   export function getFeedback( o, n ) {
