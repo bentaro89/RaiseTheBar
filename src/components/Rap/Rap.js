@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import '../Styles/Rap.css';
 import AudioPlayer from './AudioPlayer'
 import Countdown from "react-countdown";
+import mics from "../../images/mics.png";
+import restart from "../../images/restart.png";
 const lyrics = require('../../lyrics.json');
 
 class Rap extends Component  {
@@ -47,7 +49,7 @@ class Rap extends Component  {
                     fetch("http://localhost:9000/STTApi")
                     .then(res => res.text())
                         .then(res => this.setState({apiResponse: this.state.apiResponse + res, firstInput: res}));
-                    if(this.state.firstTime && this.state.firstInput != " "){
+                    if(this.state.firstTime && this.state.firstInput !== " "){
                         this.setState({apiResponse: " ", firstTime: false});
                     }
                 }
@@ -87,7 +89,7 @@ class Rap extends Component  {
                     value = {this.state.name} 
                     onChange = {this.newName}
                 />
-                <img src="/images/mic.png" style={{width: '7rem'}}/>
+                <img src={mics} style={{width: '7rem'}}/>
                 <div class="scroll" onClick={this.handleStart}>
                     <div className='lyrics-container'>
                         <p className={this.state.play ? 'lyrics' : 'lyrics-blurred'}>
@@ -101,7 +103,7 @@ class Rap extends Component  {
                         </p>
                     </div>
                 </div>
-                <img src="/images/restart.png" className='restart' onClick={this.handleRestart}/>
+                <img src={restart} className='restart' onClick={this.handleRestart}/>
             </div>
         );
     }
