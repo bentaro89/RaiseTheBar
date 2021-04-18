@@ -39,10 +39,10 @@
     background: rgba(84, 88, 92, 0.2);
     float: right;
     list-style-type: none;
-    transform: translate(65%, 40%);
+    transform: translate(65%, 65%);
     justify-content: flex-end;
     width: 130px;
-    height: 200px;
+    height: 150px;
     padding-top: 0.8rem;
 }
 

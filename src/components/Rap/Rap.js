@@ -78,17 +78,17 @@ class Rap extends Component  {
 
     render() {
         return (
-            <div>
+            <div className='wrapper'>
                 <AudioPlayer visible={this.state.play} start={this.start} stop={this.stop}/>
                 <p>{this.state.apiResponse}</p>
+                <img className='mic' src="/images/mic.png" style={{width: '7rem'}}/>
                 <input
                     type = 'text'
-                    placeholder = 'Enter your name i.e Eminem'
+                    placeholder = 'Enter your name to play...'
                     value = {this.state.name} 
                     onChange = {this.newName}
                 />
-                <img src="/images/mic.png" style={{width: '7rem'}}/>
-                <div class="scroll" onClick={this.handleStart}>
+                <div className="scroll" onClick={this.handleStart}>
                     <div className='lyrics-container'>
                         <p className={this.state.play ? 'lyrics' : 'lyrics-blurred'}>
                             {lyrics.one}
