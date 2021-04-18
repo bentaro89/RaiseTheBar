@@ -3,11 +3,12 @@ import '../Styles/Rap.css';
 import * as db from '../../dataStorage/datastore';
 import AudioPlayer from './AudioPlayer';
 import Countdown from "react-countdown";
-import DiffRender from "../../Algorithm/DiffRender.jsx"
+import DiffRender from "../../Algorithm/DiffRender.jsx";
 import mics from "../../images/mics.png";
 import mic from "../../images/mic.png";
 import restart from "../../images/restart.png";
 import Leaderboard from './LeaderBoard';
+import { getScore } from "../../Algorithm/textDiff.js";
 const lyrics = require('../../lyrics.json');
 
 class Rap extends Component  {
@@ -15,7 +16,7 @@ class Rap extends Component  {
         starting: false, 
         play: false,
         name: '',
-        score: 10,
+        score: 0,
         completedRap: false,
         startedRecording: false,
         apiResponse: " ",
@@ -46,12 +47,19 @@ class Rap extends Component  {
     }
 
     start = () => {
-        this.setState({startedRecording: true})
+        this.setState({startedRecording: true});
     }
 
     stop = () => {
-        this.setState({startedRecording: false})
+        this.setState({startedRecording: false});
+        if (this.state.play === true) {
+            this.setState({
+                score: Math.round(100 * getScore(lyrics.one, this.state.apiResponse))
+            });
+            db.addScore(this.state.name, this.state.score);
+        }
     }
+
     async componentDidMount() {
         try {
             setInterval(async () => {
@@ -73,7 +81,6 @@ class Rap extends Component  {
         if (completed) {
           // Render a complete state
           this.setState({ play: true })
-          db.addScore(this.state.name, this.state.score)
           return null;
         } else {
           // Render a countdown
@@ -114,6 +121,10 @@ class Rap extends Component  {
                     <div className='left-sidebar'>
                         <h2>Leaderboard</h2>
                         <progress className='leaderboard' max='100' min='0' value='45'/>
+                        <div className = "score">
+                            <h2>Score:</h2>
+                            <h1>{this.state.score}</h1>
+                        </div>
                     </div>
                     <div className="scroll" onClick={this.handleStart}>
                         <div className='lyrics-container'>

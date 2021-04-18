@@ -125,3 +125,16 @@ input {
     transform: rotate(-90deg);
     margin-top: 10rem;
 }
+
+.score {
+    background-color: rgb(55, 59, 70);
+    max-width: fit-content;
+    padding-top: 4px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 4px;
+    border-radius: 20px;
+    position: absolute;
+    bottom: 0px;
+    right: 40%;
+}
