@@ -1,70 +1,27 @@
-# Getting Started with Create React App
+# HackDartmouth 2021: Raise the Bar
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Hello! Our submission for HackDartmouth 2021 is Raise the Bar, a website to measure your proficienty at rapping!
 
-## Available Scripts
+## Description
 
-In the project directory, you can run:
+Raise the Bar is a React/Express app implementing Google's Speech-To-Text API to record the user's vocals and serve as a standard for recognizable speech. We provide the user with a sample audio track and lyrics. It is the user's goal to speak quickly and clearly. The website then compares Google's transcript to the lyrics and calculates a score based on accuracy. There is a running leaderboard stored in Firebase to view who has performed the best!
 
-### `yarn start`
+### Setup
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Speech-To-Text requires SoX (Sound Exchange) to function. For mac users run `brew install sox`. For Windows, download the binaries here: http://sourceforge.net/projects/sox/files/latest/download and make sure SoX is available in your $PATH. 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+To make sure you have all the necessary packages, run both `npm install` and `yarn install` in the root directory, then `cd` into `/api` and run `npm install` there as well. To launch the website, run `yarn start` from the root directory. Then, open another terminal and `cd` into `/api` and run `npm start` in order to initialize the api. 
 
-### `yarn test`
+NOTE: Both the Speech-To-Text API and Firebase require secret authentication files to funcion. Because this repo is private and we trust you, we have provided these files for you. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Usage: 
 
-### `yarn build`
+Once the website is up, navigate to the "Rap" page either by clicking "Try it Out" or using the navigation panel on the top right. Enter your name in the input field and click to start. You will have 3 seconds to get accustomed to the beat and preview the lyrics. Once the countdown is over, start rapping! Make sure to speak fast enough before the progress bar fills!
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Thanks!
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Adrienne Ko '23
+Andy Kotz '24
+Benedict Tedjokusumo '23
+Camden Hao '23
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

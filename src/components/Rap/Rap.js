@@ -14,6 +14,7 @@ const lyrics = require('../../lyrics.json');
 class Rap extends Component  {
     state = { clicked: false, 
         starting: false, 
+        firstStart: true,
         countdownStart: false,
         play: false,
         name: '',
@@ -44,7 +45,8 @@ class Rap extends Component  {
     playTwoBars = () => {
         this.setState({ 
             starting: true,
-            restarted: false
+            restarted: false,
+            firstStart: false
         })
         setTimeout(() => {
             this.setState({ countdownStart: true })
@@ -78,17 +80,15 @@ class Rap extends Component  {
         });
     }
 
-    start = () => { // begins rapping
-        this.setState({});
-    }
-
     stop = () => { // ends rapping
         this.setState({
-            startedRecording: false,
             starting: false, 
             play: false,
             countdownStart: false
         });
+        setTimeout(() => {
+            this.setState({ startedrecording: false })
+        }, 3000);
         this.setState({ // Return a score as an integer
             score: Math.round(100 * getScore(lyrics.one, this.state.apiResponse))
         });
@@ -150,7 +150,7 @@ class Rap extends Component  {
     render() {
         return (
             <div className='wrapper'>
-                <AudioPlayer visible={this.state.starting} start={this.start} stop={this.stop}/>
+                <AudioPlayer visible={this.state.starting} stop={this.stop}/>
                 <p>{this.state.apiResponse}</p>
                 <img className='mic'  alt= 'mic' src={mic} style={{width: '7rem'}}/>
                 <input
@@ -169,7 +169,7 @@ class Rap extends Component  {
                     </div>
                     <div className="scroll" onClick={this.handleStart}>
                         <div className='lyrics-container'>
-                            <div className={this.state.starting ? 'lyrics' : 'lyrics-blurred'}>
+                            <div className={this.state.firstStart ? 'lyrics-blurred' : 'lyrics'}>
                                 <DiffRender recorded = {lyrics.one} user = {this.state.apiResponse}/>
                             </div>
                             {this.state.countdownStart ?
