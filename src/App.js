@@ -3,12 +3,12 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import * as db from './dataStorage/datastore';
 import './App.css';
 import DiffRender from './Algorithm/DiffRender.jsx'
-
 import Header from './components/Header';
 import Landing from './components/Landing/Landing';
 import About from './components/About/About';
 import Leaderboard from './components/Leaderboard/Leaderboard';
 import Rap from './components/Rap/Rap';
+const lyrics = require('./lyrics.json');
 
 class App extends Component {
   constructor(props) {
@@ -17,12 +17,12 @@ class App extends Component {
       test1: "test it!",
       apiResponse: "",
     }
+    console.log(lyrics.one); // Get the first verse of lyrics
   }
   //Repeatedly call API to obtain most recent microphone input 
   async componentDidMount() {
     try {
       setInterval(async () => {
-        
         fetch("http://localhost:9000/STTApi")
           .then(res => res.text())
             .then(res => this.setState({apiResponse: res}));
@@ -30,7 +30,8 @@ class App extends Component {
     } catch(e) {
       console.log(e);
     }
-}
+  }
+
   render (){
     return(
     <div className="App">

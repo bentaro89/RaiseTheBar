@@ -5,15 +5,14 @@ firebase.initializeApp(config);
 const database = firebase.database();
 
   export function addScore(Score) {
-    const dogs = database.ref('Lyricss');
-    dogs.push({
+    database.ref('Scores/').push({
       Score
     });
   }
 
-  export function fetchLyrics(){
-    database.ref('Lyrics').on('value', (snapshot) => {
-      snapshot.val();
+  export function fetchScores(callback){
+    database.ref('Scores/').on('value', (snapshot) => {
+      callback(snapshot.val());
     })
   }
 
