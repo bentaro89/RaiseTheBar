@@ -8,7 +8,6 @@ import Landing from './components/Landing/Landing';
 import About from './components/About/About';
 import Leaderboard from './components/Leaderboard/Leaderboard';
 import Rap from './components/Rap/Rap';
-import AudioPlayer from './components/Audio/AudioPlayer'
 const lyrics = require('./lyrics.json');
 
 class App extends Component {
@@ -22,25 +21,8 @@ class App extends Component {
     console.log(lyrics.one); // Get the first verse of lyrics
   }
   //Repeatedly call API to obtain most recent microphone input 
-  async componentDidMount() {
-    try {
-      while(this.state.startedRecording){
-        setInterval(async () => {
-          fetch("http://localhost:9000/STTApi")
-            .then(res => res.text())
-              .then(res => this.setState({apiResponse: res}));
-        }, 50);
-      }
-    } catch(e) {
-      console.log(e);
-    }
-  }
   start = () => {
     this.setState({startedRecording: !this.state.startedRecording})
-  }
-
-  end = () => {
-    this.setState({startedRecording: "false"})
   }
 
   render (){
@@ -49,9 +31,7 @@ class App extends Component {
     <header className="App-header">
       <Router>
         <Header/>
-        <AudioPlayer start={this.start} end={this.end}/>
-        <p>{this.state.startedRecording.toString()}</p>
-        <p>{this.state.apiResponse}</p>
+        {/* <p>{this.state.apiResponse}</p> */}
         <Switch>
           <Route path='/' exact component={Landing} />
           <Route path='/about' exact component={About} />
