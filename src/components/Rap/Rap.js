@@ -99,7 +99,7 @@ class Rap extends Component  {
     render() {
         return (
             <div className='wrapper'>
-                <AudioPlayer visible={this.state.play} start={this.start} stop={this.stop}/>
+                <AudioPlayer visible={this.state.starting} start={this.start} stop={this.stop}/>
                 <p>{this.state.apiResponse}</p>
                 <img className='mic'  alt= 'mic' src={mic} style={{width: '7rem'}}/>
                 <input
@@ -117,7 +117,7 @@ class Rap extends Component  {
                     </div>
                     <div className="scroll" onClick={this.handleStart}>
                         <div className='lyrics-container'>
-                            <p className={this.state.play ? 'lyrics' : 'lyrics-blurred'}>
+                            <p className={this.state.starting ? 'lyrics' : 'lyrics-blurred'}>
                                 <DiffRender recorded = {lyrics.one} user = {this.state.apiResponse}/>
                             </p>
                             {this.state.starting ?
