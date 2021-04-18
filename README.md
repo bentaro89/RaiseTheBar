@@ -1,6 +1,6 @@
 # HackDartmouth 2021: Raise the Bar
 
-HellO! Our submission for HackDartmouth 2021 is Raise the Bar, a website to measure your proficienty at rapping!
+Hello! Our submission for HackDartmouth 2021 is Raise the Bar, a website to measure your proficienty at rapping!
 
 ## Description
 
