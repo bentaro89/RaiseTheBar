@@ -8,7 +8,7 @@
       }
 
       var numIncorrect = 0;
-      var total = o.match(/\s+/g).length;
+      var total = 0;
 
       o = o.replace(/\s+$/, '');
       n = n.replace(/\s+$/, '');
@@ -27,6 +27,7 @@
         }
         total++;
       }
+
 
       return ((total-numIncorrect)/total);
   }
