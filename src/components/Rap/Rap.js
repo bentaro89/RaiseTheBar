@@ -29,6 +29,8 @@ class Rap extends Component  {
     audio = new Audio("../../audio/test.mp3")
 
     handleStart = () => {
+
+        // If clicked start and has a valid name
         if (!this.state.starting && this.state.name.trim() !== '') {
             this.playTwoBars();
         }
@@ -37,13 +39,20 @@ class Rap extends Component  {
         }
     }
 
+    // Let the two Bars begin, waiting for countdown to start
     playTwoBars = () => {
         this.setState({ starting: true })
         setTimeout(() => {
             this.setState({ countdownStart: true })
         }, 3000);
+        setTimeout(() => {
+            this.setState({ startedRecording: true, countdownStart: false })
+            this.interval = setInterval(() => this.tickTime(), 100)
+            this.setState({timeSinceStart: 0})
+        }, 6000);
     }
 
+    // if user clicks restart
     handleRestart = () => {
         this.setState({ 
             starting: false, 
@@ -62,22 +71,22 @@ class Rap extends Component  {
         });
     }
 
-    start = () => {
-        this.setState({startedRecording: true});
-        this.interval = setInterval(() => this.tickTime(), 100);
-        this.setState({timeSinceStart: 0});
+    start = () => { // begins rapping
+        this.setState({});
     }
 
-    stop = () => {
+    stop = () => { // ends rapping
         this.setState({
             startedRecording: false,
             starting: false, 
             play: false,
             countdownStart: false
         });
-        this.setState({
+        this.setState({ // Return a score as an integer
             score: Math.round(100 * getScore(lyrics.one, this.state.apiResponse))
         });
+
+        // Record score to database
         db.addScore(this.state.name, this.state.score);
         clearInterval(this.interval);
         this.setState({
@@ -87,6 +96,7 @@ class Rap extends Component  {
 
     async componentDidMount() {
         try {
+            // speech to text api
             setInterval(async () => {
               if(this.state.startedRecording){
                     fetch("http://localhost:9000/STTApi")
@@ -103,11 +113,9 @@ class Rap extends Component  {
       }
 
     renderer = ({ seconds, completed }) => {
-        console.log(completed);
         if (completed) {
           // Render a complete state
           this.setState({ play: true })
-          console.log('w');
           return null;
         } else {
           // Render a countdown
@@ -117,15 +125,17 @@ class Rap extends Component  {
         }
     };
 
+    // Updates name 
     newName = (event) => {
         if (!this.state.starting){
             this.setState({ name: event.target.value })
         }
     }
 
+    // Checks if name is invalid
     setInvalid() {
         this.setState({ invalidName: true })
-        setTimeout(() => { // Animation lasts 1.5 secs
+        setTimeout(() => { // Animation lasts 3 secs
           this.setState({ invalidName: false })
         }, 3000);
     }
@@ -142,7 +152,7 @@ class Rap extends Component  {
                     value = {this.state.name} 
                     onChange = {this.newName}
                 />
-                {this.state.invalidName ? 'ENTER A NAME' : null}
+                {this.state.invalidName ? 'PLEASE ENTER NAME' : null}
 
                 <div className='sidebar-container'>
                     <div className='left-sidebar'>
