@@ -1,5 +1,5 @@
 import React from 'react';
-import { getFeedback, getScore } from './textDiff.js'
+import { getFeedback } from './textDiff.js'
 import parse from 'html-react-parser';
 
 class DiffRender extends React.Component{
@@ -10,7 +10,6 @@ class DiffRender extends React.Component{
 
         return(<div>{parse(content)}</div>);
     }
-
 }
 
 export default DiffRender;

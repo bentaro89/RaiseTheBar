@@ -3,6 +3,7 @@ import '../Styles/Rap.css';
 import * as db from '../../dataStorage/datastore';
 import AudioPlayer from './AudioPlayer';
 import Countdown from "react-countdown";
+import DiffRender from "../../Algorithm/DiffRender.jsx"
 import mics from "../../images/mics.png";
 import restart from "../../images/restart.png";
 import Leaderboard from './LeaderBoard';
@@ -99,8 +100,8 @@ class Rap extends Component  {
                 <img src={mics} style={{width: '7rem'}}/>
                 <div class="scroll" onClick={this.handleStart}>
                     <div className='lyrics-container'>
-                        <p className={this.state.play ? 'lyrics' : 'lyrics-blurred'}>
-                            {lyrics.one}
+                        <p className={this.state.play ? 'lyrics' : 'lyrics-blurred'} >
+                            <DiffRender recorded = {lyrics.one} user = {this.state.apiResponse} />
                         </p>
                         {this.state.starting ?
                             <Countdown date={Date.now() + 3000} renderer={this.renderer} /> : null
