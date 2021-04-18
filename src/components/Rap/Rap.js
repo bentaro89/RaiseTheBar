@@ -5,17 +5,17 @@ import Countdown from "react-countdown";
 const lyrics = require('../../lyrics.json');
 
 class Rap extends Component  {
-    state = { clicked: false, starting: false, play: false }
+    state = { starting: false, play: false }
 
     handleStart = () => {
         console.log(this.state.starting);
         if (!this.state.starting) {
-            this.setState({ clicked: true, starting: true })
+            this.setState({ starting: true })
         }
     }
 
     handleRestart = () => {
-        this.setState({ clicked: false, starting: false, play: false })
+        this.setState({ starting: false, play: false })
     }
 
     renderer = ({ seconds, completed }) => {
@@ -44,7 +44,7 @@ class Rap extends Component  {
                         {this.state.starting ?
                             <Countdown date={Date.now() + 3000} renderer={this.renderer} /> : null
                         }
-                        <p className={this.state.clicked ? 'started' : 'not-started'}>
+                        <p className={this.state.starting ? 'started' : 'not-started'}>
                             Click to Start
                         </p>
                     </div>
