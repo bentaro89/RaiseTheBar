@@ -135,11 +135,7 @@ class Rap extends Component  {
                 <div className='sidebar-container'>
                     <div className='left-sidebar'>
                         <h2>Leaderboard</h2>
-                        <progress className='leaderboard' max='100' min='0' value='45'/>
-                        <div className = "score">
-                            <h2>Score:</h2>
-                            <h1>{this.state.score}</h1>
-                        </div>
+                        <Leaderboard/>
                     </div>
                     <div className="scroll" onClick={this.handleStart}>
                         <div className='lyrics-container'>
@@ -157,11 +153,13 @@ class Rap extends Component  {
                     <div className='right-sidebar'>
                         <h2>Progress Bar</h2>
                         <progress className='progress-bar' max='100' min='0' value='5'/>
+                        <div className = "score">
+                            <h2>Score:</h2>
+                            <h1>{this.state.score}</h1>
+                        </div>
                     </div>
                 </div>
                 <img src={restart} alt = 'restart' className='restart' onClick={this.handleRestart}/>
-                <h1><u>High Score</u></h1>
-                <Leaderboard/>
             </div>
         );
     }
