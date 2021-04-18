@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../Styles/About.css';
+import Member from './Member';
 
 import adrienne from '../../images/adrienne.jpg';
 import andy from '../../images/andy.jpg';
@@ -10,13 +11,35 @@ class About extends Component  {
     render() {
         return (
             <div>
-                <p className="main-text">About the Developers</p>
                 <p className="intro-text">We are a group of Dartmouth Students</p>
-                <div className="grid2x2">
-                <div className="box box1"><img src={adrienne}/></div>
-                <div className="box box2"><img src={benny}/></div>
-                <div className="box box3"><img src={andy}/></div>
-                <div className="box box4"><img src={camden}/></div>
+                <p className="main-text">About the Developers</p>
+                <div className='team_container'>
+                    <ul className='team_members'>
+                        <div className='member-intro'>
+                            <Member src={adrienne}/>
+                            <p>
+                                My name is Adrienne.
+                            </p>
+                        </div>
+                        <div className='member-intro'>
+                            <p>
+                                My name is Ben.
+                            </p>
+                            <Member src={benny}/>
+                        </div>
+                        <div className='member-intro'>
+                            <Member src={andy}/>
+                            <p>
+                                My name is Andy.
+                            </p>
+                        </div>
+                        <div className='member-intro'>
+                            <p>
+                                My name is Camden.
+                            </p>
+                            <Member src={camden}/>
+                        </div>
+                    </ul>
                 </div>
             </div>
         );
